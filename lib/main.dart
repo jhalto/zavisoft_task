@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:zavisoft_task/feature/home/views/home_view.dart';
+import 'package:zavisoft_task/route/app_pages.dart';
+import 'package:zavisoft_task/route/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,9 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeView(),
+      // home: LoginView(),
+      getPages: AppPages.pages,
+      initialRoute: Routes.splash,
     );
   }
 }
