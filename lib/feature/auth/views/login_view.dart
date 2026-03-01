@@ -105,6 +105,11 @@ class LoginView extends GetView<AuthController> {
                                   controller: controller.passwordController,
                                   hint: "Password",
                                   isPassword: true,
+                                  textInputAction: TextInputAction.done,
+                                  onComplete: () {
+                                       FocusScope.of(context).unfocus();
+                                    controller.login();
+                                  },
                                 ),
                                 const SizedBox(height: 8),
                                 Align(
@@ -134,7 +139,7 @@ class LoginView extends GetView<AuthController> {
                                 CustomFullwidthButton(
                                   onTap: () { 
                                     FocusScope.of(context).unfocus();
-                                    // Get.toNamed(Routes.dashboard);
+                                    controller.login();
                                   },
                                   title: "Login",
                                   fontColor: AppColors.whiteColor,
