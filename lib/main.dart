@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:zavisoft_task/core/const/app_colors.dart';
 import 'package:zavisoft_task/route/app_pages.dart';
 import 'package:zavisoft_task/route/app_routes.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: AppColors.whiteColor
       ),
       // home: LoginView(),
       getPages: AppPages.pages,
