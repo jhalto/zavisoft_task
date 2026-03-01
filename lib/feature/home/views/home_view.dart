@@ -5,10 +5,8 @@ import 'package:zavisoft_task/feature/home/controllers/home_controller.dart';
 import 'package:zavisoft_task/feature/home/views/expanded_home_view.dart';
 import 'package:zavisoft_task/feature/home/widgets/product_list.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({super.key});
-
-  final HomeController controller = Get.put(HomeController());
+class HomeView extends GetView<HomeController> {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +25,22 @@ class HomeView extends StatelessWidget {
                   // Collapsible Header
                   SliverAppBar(
                     automaticallyImplyLeading: false,
-        
+                  
                     expandedHeight: MediaQuery.of(context).size.height,
                     pinned: true,
                     flexibleSpace: FlexibleSpaceBar(
                       background: Container(
-                        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, bottom: MediaQuery.of(context).padding.bottom,),
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).padding.top,
+                          bottom: MediaQuery.of(context).padding.bottom,
+                        ),
                         color: AppColors.whiteColor,
-                        
-                        child: ExpandedHomeView()
+
+                        child: ExpandedHomeView(),
                       ),
                     ),
                   ),
-        
+
                   // Sticky TabBar
                   SliverPersistentHeader(
                     pinned: true,
@@ -49,7 +50,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ];
               },
-        
+
               // ONLY ONE VERTICAL SCROLL
               body: TabBarView(
                 children: [
