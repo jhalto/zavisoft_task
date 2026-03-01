@@ -80,6 +80,13 @@ class AppTextStyle {
     height: 1.2,
     color: Colors.black87,
   );
+  static TextStyle get bodyMediumWhite => const TextStyle(
+    fontFamily: _fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    height: 1.2,
+    color: Colors.white,
+  );
 
   static TextStyle get bodyMediumSecondary => const TextStyle(
     fontFamily: _fontFamily,

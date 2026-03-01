@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zavisoft_task/feature/home/models/product_model.dart';
 
 class ProductList extends StatefulWidget {
-  final RxList<dynamic> category;
+  final RxList<Product> category;
 
   const ProductList({super.key, required this.category});
 
@@ -12,22 +13,21 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList>
     with AutomaticKeepAliveClientMixin {
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
     return Obx(() {
       return ListView.builder(
-        physics: const NeverScrollableScrollPhysics(), 
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: widget.category.length,
         itemBuilder: (context, index) {
           final product = widget.category[index];
 
           return ListTile(
-            leading: Image.network(product['image'], height: 40),
-            title: Text(product['title']),
-            subtitle: Text("\$${product['price']}"),
+            leading: Image.network(product.image, height: 40),
+            title: Text(product.title),
+            subtitle: Text("\$${product.price}"),
           );
         },
       );
@@ -35,5 +35,5 @@ class _ProductListState extends State<ProductList>
   }
 
   @override
-  bool get wantKeepAlive => true; 
+  bool get wantKeepAlive => true;
 }

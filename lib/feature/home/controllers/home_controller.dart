@@ -1,13 +1,19 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zavisoft_task/feature/home/models/product_model.dart';
 
 class HomeController extends GetxController {
   final Dio _dio = Dio();
 
-  var electronics = <dynamic>[].obs;
-  var jewelery = <dynamic>[].obs;
-  var mensClothing = <dynamic>[].obs;
-
+  var electronics = <Product>[].obs;
+  var jewelery = <Product>[].obs;
+  var mensClothing = <Product>[].obs;
+  final tabs = const [
+    Tab(text: "Electronics"),
+    Tab(text: "Jewelery"),
+    Tab(text: "Men"),
+  ];
   var isLoading = false.obs;
 
   @override
@@ -20,20 +26,25 @@ class HomeController extends GetxController {
     try {
       isLoading.value = true;
 
-      final response =
-          await _dio.get("https://fakestoreapi.com/products");
+      final response = await _dio.get("https://fakestoreapi.com/products");
 
-      final products = response.data;
+      final List productsJson = response.data;
 
-      electronics.value =
-          products.where((e) => e['category'] == 'electronics').toList();
+      final List<Product> allProducts = productsJson
+          .map((e) => Product.fromJson(e))
+          .toList();
 
-      jewelery.value =
-          products.where((e) => e['category'] == 'jewelery').toList();
+      electronics.value = allProducts
+          .where((e) => e.category == 'electronics')
+          .toList();
 
-      mensClothing.value =
-          products.where((e) => e['category'] == "men's clothing").toList();
+      jewelery.value = allProducts
+          .where((e) => e.category == 'jewelery')
+          .toList();
 
+      mensClothing.value = allProducts
+          .where((e) => e.category == "men's clothing")
+          .toList();
     } finally {
       isLoading.value = false;
     }
