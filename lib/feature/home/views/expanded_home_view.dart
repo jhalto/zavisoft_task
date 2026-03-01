@@ -7,7 +7,7 @@ import 'package:zavisoft_task/feature/home/controllers/home_controller.dart';
 
 class ExpandedHomeView extends StatelessWidget {
   ExpandedHomeView({super.key});
-  final controller = Get.find<HomeController>();
+  final HomeController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -87,14 +87,27 @@ class ExpandedHomeView extends StatelessWidget {
                     vertical: 8,
                   ),
                   child: Row(
-                    mainAxisAlignment: .spaceBetween,
                     children: [
-                      Text("Safe Payment", style: AppTextStyle.bodyMediumWhite),
-                      Text(
-                        "Fast Delivery",
-                        style: AppTextStyle.bodyMediumWhite,
+                      Expanded(
+                        child: Text(
+                          "Safe Payment",
+                          style: AppTextStyle.bodyMediumWhite,
+                        ),
                       ),
-                      Text("Free Return", style: AppTextStyle.bodyMediumWhite),
+                      Expanded(
+                        child: Text(
+                          "Fast Delivery",
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.bodyMediumWhite,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          "Free Return",
+                          textAlign: TextAlign.end,
+                          style: AppTextStyle.bodyMediumWhite,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -122,19 +135,42 @@ class ExpandedHomeView extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: 300,
+                          height: 170,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: controller.jewelery.length,
                             itemBuilder: (context, index) {
                               final product = controller.jewelery[index];
+
                               return Container(
-                                width: 200,
-                                height: 200,
+                                width: 140,
+                                margin: const EdgeInsets.only(right: 12),
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Colors.grey.shade100,
+                                ),
                                 child: Column(
-                                  mainAxisSize: .min,
                                   children: [
-                                    CachedNetworkImage(imageUrl: product.image),
+                                    Expanded(
+                                      child: CachedNetworkImage(
+                                        imageUrl: product.image,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      product.title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                    Text(
+                                      "\$${product.price}",
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               );
