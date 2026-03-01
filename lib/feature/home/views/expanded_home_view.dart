@@ -134,7 +134,7 @@ class ExpandedHomeView extends StatelessWidget {
                                 child: Column(
                                   mainAxisSize: .min,
                                   children: [
-                                    CachedNetworkImage(imageUrl: product.image),
+                                    CachedNetworkImage(imageUrl: product.image,height: 200,width: 200,fit: BoxFit.contain,),
                                   ],
                                 ),
                               );
